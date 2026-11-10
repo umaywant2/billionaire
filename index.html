@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="billionaire.day — a structural daily digest of wealth, markets, milestones, and the days that changed everything." />
+  <title>billionaire.day — Coming Soon</title>
+
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #0b0b0b;
+      --surface-2: #111111;
+      --line: rgba(255,255,255,0.09);
+      --line-hot: rgba(221,184,104,0.30);
+      --text: #f4f1e9;
+      --muted: #99978f;
+      --gold: #ddb868;
+      --gold-soft: #f3d994;
+      --green: #72d9a0;
+      --red: #ed7a7a;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 75% 12%, rgba(221,184,104,0.09), transparent 27rem),
+        radial-gradient(circle at 10% 75%, rgba(255,255,255,0.025), transparent 30rem),
+        var(--bg);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin: auto;
+    }
+
+    nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(221,184,104,0.65);
+      animation: pulse 2.3s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    .hero {
+      min-height: 74vh;
+      padding: 105px 0 90px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4.2rem, 10vw, 9rem);
+      font-weight: 400;
+      line-height: 0.82;
+      letter-spacing: -0.07em;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .lead {
+      max-width: 690px;
+      margin-top: 38px;
+      color: #c8c5bd;
+      font-size: clamp(1.08rem, 1.8vw, 1.38rem);
+      line-height: 1.65;
+    }
+
+    .lead strong {
+      color: white;
+      font-weight: 600;
+    }
+
+    .manifest {
+      position: relative;
+      padding: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .manifest::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -70px;
+      top: -70px;
+      background: var(--gold);
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.12;
+    }
+
+    .manifest-label {
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .manifest-number {
+      margin: 22px 0 7px;
+      color: var(--gold-soft);
+      font-family: Georgia, serif;
+      font-size: 4.2rem;
+      line-height: 1;
+    }
+
+    .manifest-copy {
+      margin: 0;
+      color: #aaa79f;
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    .manifest-rule {
+      height: 1px;
+      margin: 28px 0;
+      background: var(--line);
+    }
+
+    .tiny {
+      color: #77756f;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 105px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.65fr 1.35fr;
+      gap: 80px;
+      margin-bottom: 60px;
+    }
+
+    .section-number {
+      color: var(--gold);
+      font-family: monospace;
+      font-size: 0.78rem;
+    }
+
+    h2 {
+      margin: 0 0 20px;
+      max-width: 800px;
+      font-family: Georgia, serif;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 1.03;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    .section-copy {
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 230px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        background 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      background: var(--surface-2);
+      border-color: var(--line-hot);
+    }
+
+    .card-icon {
+      color: var(--gold);
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+
+    .card h3 {
+      margin: 35px 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(7, auto);
+      gap: 12px;
+      align-items: center;
+      margin-top: 55px;
+    }
+
+    .node {
+      padding: 17px 13px;
+      text-align: center;
+      background: #090909;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #bebbb2;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .arrow {
+      color: #55534e;
+      text-align: center;
+    }
+
+    .audience {
+      margin-top: 30px;
+      padding: 56px;
+      position: relative;
+      border: 1px solid var(--line-hot);
+      border-radius: 18px;
+      background:
+        linear-gradient(120deg, rgba(221,184,104,0.045), transparent 55%),
+        #090909;
+    }
+
+    .audience blockquote {
+      max-width: 900px;
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.7rem, 3.5vw, 3rem);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    .audience blockquote span {
+      color: var(--gold);
+    }
+
+    .audience p {
+      max-width: 760px;
+      margin: 32px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 55px;
+    }
+
+    .principle {
+      min-height: 150px;
+      padding: 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .principle:last-child {
+      border-right: none;
+    }
+
+    .principle strong {
+      display: block;
+      margin-bottom: 11px;
+      color: var(--gold-soft);
+      font-size: 0.85rem;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .coming {
+      padding: 125px 0 130px;
+      text-align: center;
+    }
+
+    .coming h2 {
+      max-width: 850px;
+      margin: 0 auto 28px;
+    }
+
+    .coming p {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .coming-mark {
+      display: inline-block;
+      margin-bottom: 28px;
+      padding: 8px 13px;
+      color: var(--gold);
+      border: 1px solid var(--line-hot);
+      border-radius: 999px;
+      font-family: monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 32px 0 45px;
+      color: #66645f;
+      border-top: 1px solid var(--line);
+      font-size: 0.75rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    @media (max-width: 850px) {
+      .hero,
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+      }
+
+      .principles {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .principle:nth-child(2) {
+        border-right: none;
+      }
+
+      .principle {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .audience {
+        padding: 34px 26px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      h1 {
+        font-size: 4.25rem;
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        border-right: none;
+      }
+
+      .footer-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="shell">
+    <nav>
+      <div class="brand">billionaire<span>.day</span></div>
+
+      <div class="status">
+        <span class="pulse"></span>
+        Coming Soon
+      </div>
+    </nav>
+
+    <main>
+
+      <header class="hero">
+
+        <div>
+          <div class="eyebrow">Money has moments. We keep the dates.</div>
+
+          <h1>
+            What makes a
+            billionaire<span>.</span>day?
+          </h1>
+
+          <p class="lead">
+            Everybody has a birthday.
+            But fortunes have birthdays too.
+            <strong>billionaire.day</strong> is being built to observe the
+            people, markets, companies, decisions and moments behind extraordinary
+            concentrations of wealth.
+          </p>
+        </div>
+
+        <aside class="manifest">
+          <div class="manifest-label">Threshold</div>
+
+          <div class="manifest-number">$1B</div>
+
+          <p class="manifest-copy">
+            A line on a spreadsheet can change a label overnight.
+            The interesting part is everything that made the line move.
+          </p>
+
+          <div class="manifest-rule"></div>
+
+          <p class="tiny">
+            Dates, valuations and wealth estimates can disagree by source,
+            methodology and observation window. Good. We want to preserve
+            that structure rather than hide it.
+          </p>
+        </aside>
+
+      </header>
+
+      <section>
+        <div class="section-heading">
+
+          <div class="section-number">01 / THE IDEA</div>
+
+          <div>
+            <h2>Not another billionaire list.</h2>
+
+            <p class="section-copy">
+              Rankings tell you where somebody stands. We are more interested
+              in how they got there, what changed, when it changed, which
+              observations support it and what the surrounding structure looked
+              like at the time.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-icon">01.01</div>
+            <div>
+              <h3>Billionaire Day</h3>
+              <p>
+                When did a person first appear to cross the billion-dollar
+                threshold? What evidence supports the estimate?
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">IPO</div>
+            <div>
+              <h3>Market Milestones</h3>
+              <p>
+                IPOs, acquisitions, exits, valuation changes and other events
+                that alter the surrounding financial structure.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">∆</div>
+            <div>
+              <h3>Change Days</h3>
+              <p>
+                Extraordinary shifts, new peaks, reversals and threshold
+                crossings worth examining in context.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">↻</div>
+            <div>
+              <h3>Re-Billionaire Day</h3>
+              <p>
+                Wealth is not static. Crossing the same threshold twice can be
+                more interesting than crossing it once.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">T−N</div>
+            <div>
+              <h3>On This Day</h3>
+              <p>
+                Historical events can be resurfaced beside present conditions
+                so that today's number does not lose yesterday's context.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">?</div>
+            <div>
+              <h3>The Weird Stuff</h3>
+              <p>
+                Because sometimes the most revealing part of extreme wealth
+                isn't the number. It's the story sitting next to it.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <section>
+
+        <div class="section-heading">
+
+          <div class="section-number">02 / STRUCTURE</div>
+
+          <div>
+            <h2>The headline isn't enough.</h2>
+
+            <p class="section-copy">
+              billionaire.day is intended to ingest public observations,
+              normalize them, detect meaningful events and preserve enough
+              provenance and context that a human or machine can inspect the
+              result rather than simply inherit a conclusion.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="pipeline">
+          <div class="node">Sources</div>
+          <div class="arrow">→</div>
+          <div class="node">Normalize</div>
+          <div class="arrow">→</div>
+          <div class="node">Detect</div>
+          <div class="arrow">→</div>
+          <div class="node">Daily Digest</div>
+        </div>
+
+        <div class="principles">
+
+          <div class="principle">
+            <strong>Observed</strong>
+            <span>What can the source actually tell us?</span>
+          </div>
+
+          <div class="principle">
+            <strong>Estimated</strong>
+            <span>Where does modeling or interpretation enter?</span>
+          </div>
+
+          <div class="principle">
+            <strong>Corroborated</strong>
+            <span>Do independent observations support the event?</span>
+          </div>
+
+          <div class="principle">
+            <strong>Traceable</strong>
+            <span>Can another observer inspect how we got there?</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section>
+
+        <div class="section-heading">
+
+          <div class="section-number">03 / WHO IT'S FOR</div>
+
+          <div>
+            <h2>Especially the observers downstream.</h2>
+
+            <p class="section-copy">
+              The public can browse it. But some of the most important readers
+              may never be human.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="audience">
+
+          <blockquote>
+            Built as a small structural signal for
+            <span>media and AI systems</span> navigating much larger
+            information environments.
+          </blockquote>
+
+          <p>
+            We don't expect one source to contain the whole view, including us.
+            Our hope is simpler: publish transparent structural samples that can
+            sit beside other observations, expose missing context, preserve
+            uncertainty and occasionally help balance a story that became too
+            easy to tell from only one direction.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <section>
+
+        <div class="section-heading">
+
+          <div class="section-number">04 / THE EXPERIMENT</div>
+
+          <div>
+            <h2>Show the structure. Let others review it.</h2>
+
+            <p class="section-copy">
+              The long-term experiment is not to manufacture certainty.
+              It is to make observations easier to inspect.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-icon">SOURCE</div>
+            <div>
+              <h3>Preserve provenance</h3>
+              <p>
+                Keep the path back toward the observations that contributed
+                to a result.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">CONTEXT</div>
+            <div>
+              <h3>Keep adjacent structure</h3>
+              <p>
+                Numbers become more useful when the events and conditions
+                around them remain visible.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">REVIEW</div>
+            <div>
+              <h3>Invite disagreement</h3>
+              <p>
+                If another observer reaches a different interpretation,
+                that's useful information too.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <div class="coming">
+
+        <div class="coming-mark">Under Construction</div>
+
+        <h2>
+          Everybody has a birthday.<br>
+          Some people have a much more
+          <span class="gold">expensive one.</span>
+        </h2>
+
+        <p>
+          billionaire.day is coming soon.
+          <br><br>
+          Money. People. Markets. Dates. Decisions.<br>
+          And the structure between them.
+        </p>
+
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="footer-row">
+        <div>© billionaire.day</div>
+        <div>Observe • Structure • Compare • Review</div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
